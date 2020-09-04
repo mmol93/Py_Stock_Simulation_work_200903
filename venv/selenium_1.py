@@ -17,8 +17,5 @@ html = driver.page_source
 soup = BeautifulSoup(html, "html.parser")
 
 data = driver.find_element_by_xpath("/html/body/div/div/div/div[1]/table[2]/tbody/tr[3]/td[1]/p").text
-data2 = driver.find_element_by_xpath("/html/body/div/div/div/div[1]/table[2]/tbody/tr[3]/td[1]/p/a")
-
 
 print(data)
-print(data2)
