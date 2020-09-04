@@ -1,13 +1,10 @@
-from bs4 import BeautifulSoup
-import requests
+import foreign_buy_top20
+import company_buy_Top20
+import lxml
+import pandas as pd
 
-# 1) reqeusts 라이브러리를 활용한 HTML 페이지 요청
-# 1-1) res 객체에 HTML 데이터가 저장되고, res.content로 데이터를 추출할 수 있음
-res = requests.get('https://finance.naver.com/sise/sise_deal_rank.nhn')
+df = pd.read_excel('Stock_excel.xlsm', header=0)[0]
 
-# print(res.content)
-# 2) HTML 페이지 파싱 BeautifulSoup(HTML데이터, 파싱방법)
-# 2-1) BeautifulSoup 파싱방법
-soup = BeautifulSoup(res.content, 'html.parser')
+df.종목코드 = df.종목코드.map('{:06d}'.format)
 
-print(soup)
+print(df.종목코드)
