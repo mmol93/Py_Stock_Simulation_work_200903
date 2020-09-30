@@ -126,4 +126,3 @@ def today_foreign_top_totall():     # 오늘 날짜 + top20까지 모든 종목 
 
     return today_foreign_top20_list
 
-
