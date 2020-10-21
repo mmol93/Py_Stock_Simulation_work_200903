@@ -1,7 +1,6 @@
 import foreign_buy_top20
 import company_buy_Top20
 import trading_top
-import pandas as pd
 import load_excell
 import stockCode_search
 import requests
@@ -60,12 +59,12 @@ for trading_list2 in today_trading_amount_top20:
 # print(today_trading_amount_top20)
 
 if final_foregin_list:
-    print("어제, 오늘 외국인 순매수 + 오늘 거래량 비교:",final_foregin_list)
+    print("(코스피)어제, 오늘 외국인 순매수 + 오늘 거래량 비교:",final_foregin_list)
 else:
     print("외국인 순매수 - 거래량 일치하는 종목 없음")
 
 if final_company_list:
-    print("어제, 오늘 기관 순매수 + 오늘 거래량 비교:",final_company_list)
+    print("(코스피)어제, 오늘 기관 순매수 + 오늘 거래량 비교:",final_company_list)
 else:
     print("기관 순매수 - 거래량 일치하는 종목 없음")
 
@@ -114,7 +113,9 @@ while i < len(recommand_Ai_code): # AI 리스트에 적은 항목 횟수만큼 �
     #     ai_total_list.append("+" + str(changing) + "%")
     # else:
     #     ai_total_list.append("-" + str(changing) + "%")
+    # 페센트 넣기
     ai_total_list.append(str(changing) + "%")
+    # 해당 주식의 네이버 주식 페이지 주소도 같이 넣기
     ai_total_list.append(url)
     print(ai_total_list)
 
