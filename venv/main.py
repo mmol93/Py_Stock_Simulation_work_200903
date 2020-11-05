@@ -6,7 +6,9 @@ import stockCode_search
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
-
+from datetime import datetime
+import os
+import shutil
 
 # 어제 / 외국인 / 순매수 / top20 / 리스트형 / ok
 ago2_foreign_buy_top20_list = foreign_buy_top20.ago2_foreign_top20_totall()
@@ -162,7 +164,6 @@ while i < len(recommand_Ai_code): # AI 리스트에 적은 항목 횟수만큼 �
         forign_buyingHistory_message = "("  + str(forign_buyingHistory_unit) + str(xpath_counter) + "일간)"
     except:
         forign_buyingHistory_message = "수급정보 없음"
-        print("여기 오류")
 
     # 기관 수급 확인
     # 위에서 사용한 변수 초기화
@@ -207,6 +208,15 @@ while i < len(recommand_Ai_code): # AI 리스트에 적은 항목 횟수만큼 �
     ai_total_list.clear()
     i += 1
 
+## 현재 시간이 16시을 넘었을 때, AI_List.xlsx 파일을 onedrive에 저장하기
+now = datetime.now()
+now_hour = now.strftime("%H")
+now_min = now.strftime("%M")
+
+if (int(now_hour) >= 16):
+    shutil.copyfile("C:/Users/ijiu/Desktop/work/Git/Stock_sim2ulation_work/venv/AI_List.xlsx",
+                "C:/Users/ijiu/OneDrive/AI_List.xlsx")
+    print("엑셀 백업 성공")
 
 
 
