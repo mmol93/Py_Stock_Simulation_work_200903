@@ -29,7 +29,7 @@ def ago2_foreign_top5():
 
 
 def ago2_foreign_top10():
-    i = 11 # Top5까지 자료 가져오기 위한 카운터
+    i = 11 # Top10까지 자료 가져오기 위한 카운터
     data_foreign_top10 = []
     ago2_xpath1 = "/html/body/div/div/div/div[1]/table[2]/tbody/" # 어제 일자 외국인 상위매수 종목 앞 PATH
 

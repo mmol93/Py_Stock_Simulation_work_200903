@@ -9,6 +9,9 @@ from selenium import webdriver
 from datetime import datetime
 import os
 import shutil
+import time
+
+print("실시 날짜: " + str(datetime.now().strftime("%Y/%m/%d, %H:%M")))
 
 # 어제 / 외국인 / 순매수 / top20 / 리스트형 / ok
 ago2_foreign_buy_top20_list = foreign_buy_top20.ago2_foreign_top20_totall()
@@ -27,7 +30,7 @@ today_trading_amount_top20 = trading_top.trading_top20()
 
 
 # 중복되서 나오는 종목 선발하기
-# 순서 : [어제 -> 오늘 -> 거래량] 이거를 외국인 / 기관별로 실시한다
+# 순서 : [어제 -> 오늘 -> 거래량] 이거를 외국인 / 기관별로 실시한다(셋 다 교집합이 되는 종목만 출력함)
 # 그럼 외국인 / 기관 이렇게 2개의 리스트가 나오게된다
 
 # 외국인의 어제 -> 오늘 종목 선정 - ok
@@ -214,9 +217,9 @@ now_hour = now.strftime("%H")
 now_min = now.strftime("%M")
 
 if (int(now_hour) >= 16):
-    shutil.copyfile("C:/Users/ijiu/Desktop/work/Git/Stock_sim2ulation_work/venv/AI_List.xlsx",
+    shutil.copyfile("C:/Users/ijiu/Desktop/work/Git/Stock_simulation_work/venv/AI_List.xlsx",
                 "C:/Users/ijiu/OneDrive/AI_List.xlsx")
     print("엑셀 백업 성공")
 
-
+driver.quit()
 
