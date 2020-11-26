@@ -3,18 +3,22 @@ from bs4 import BeautifulSoup
 
 path = "C:/selenium/chromedriver"
 
-options = webdriver.ChromeOptions()
-options.add_argument("headless")
-options.add_argument("disable-gpu")
-
-driver = webdriver.Chrome("C:/selenium/chromedriver", options=options)
-url = "https://finance.naver.com/sise/sise_deal_rank.nhn?investor_gubun=1000"   #네이버 주식_기관 순매수
-driver.implicitly_wait(3)   #인터넷 로딩위해 3초 기다림
-
-driver.get(url)
-driver.switch_to.frame("buy")   # 해당 표는 iframe으로 되어있기 때문에 iframe을 로딩시켜줌
-html = driver.page_source
-soup = BeautifulSoup(html, "html.parser")
+try:
+    options = webdriver.ChromeOptions()
+    options.add_argument("headless")
+    options.add_argument("disable-gpu")
+    
+    driver = webdriver.Chrome("C:/selenium/chromedriver", options=options)
+    url = "https://finance.naver.com/sise/sise_deal_rank.nhn?investor_gubun=1000"   #네이버 주식_기관 순매수
+    driver.implicitly_wait(3)   #인터넷 로딩위해 3초 기다림
+    
+    driver.get(url)
+    driver.switch_to.frame("buy")   # 해당 표는 iframe으로 되어있기 때문에 iframe을 로딩시켜줌
+    html = driver.page_source
+    soup = BeautifulSoup(html, "html.parser")
+    
+except:
+    driver.quit()
 
 def ago2_company_top5():
     i = 0 # Top5까지 자료 가져오기 위한 카운터
@@ -125,3 +129,4 @@ def today_company_top_totall():     # 오늘 날짜 + top20까지 모든 종목 
     today_company_top20_list = top5 + top10 + top15 + top20
 
     return today_company_top20_list
+
