@@ -11,6 +11,8 @@ import os
 import shutil
 import time
 
+# 인공지능 종목 분석툴
+
 try:
     print("실시 날짜: " + str(datetime.now().strftime("%Y/%m/%d, %H:%M")))
 
@@ -165,6 +167,11 @@ try:
                     forign_buyingHistory_message = "(" + str(forign_buyingHistory_unit) + str(xpath_counter) + "일간)"
                     break;
                 xpath_num += 1
+            # 2일연속 외국인 매수시 - 외국인_매수고려
+            if forign_buyingHistory_unit == "+" and xpath_counter >= 2:
+                rolling_foreign = "외국인-매수고려"
+                ai_total_list.append(rolling_foreign)
+
             forign_buyingHistory_message = "("  + str(forign_buyingHistory_unit) + str(xpath_counter) + "일간)"
         except:
             forign_buyingHistory_message = "수급정보 없음"
@@ -199,6 +206,10 @@ try:
                     company_buyingHistory_message = "(" + str(company_buyingHistory_unit) + str(xpath_counter) + "일간)"
                     break;
                 xpath_num += 1
+            # 3일연속 기관 매수시 - 기관_매수고려
+            if company_buyingHistory_unit == "+" and xpath_counter >= 3:
+                rolling_company = "기관-매수고려"
+                ai_total_list.append(rolling_company)
             company_buyingHistory_message = "(" + str(company_buyingHistory_unit) +str(xpath_counter) + "일간)"
         except:
             company_buyingHistory_message = "수급정보 없음"
@@ -206,6 +217,7 @@ try:
         # 해당 주식의 네이버 주식 페이지 주소도 같이 넣기
         ai_total_list.append(forign_buyingHistory_message)
         ai_total_list.append(company_buyingHistory_message)
+
         ai_total_list.append(url)
         print(ai_total_list)
 
@@ -225,4 +237,5 @@ try:
     driver.quit()
 
 except:
+    print("통신 에러발생")
     driver.quit()
