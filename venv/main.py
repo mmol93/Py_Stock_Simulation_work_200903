@@ -229,11 +229,6 @@ try:
     now_hour = now.strftime("%H")
     now_min = now.strftime("%M")
 
-    if (int(now_hour) >= 16):
-        shutil.copyfile("C:/Users/ijiu/Desktop/work/Git/Stock_simulation_work/venv/AI_List.xlsx",
-                    "C:/Users/ijiu/OneDrive/AI_List.xlsx")
-        print("엑셀 백업 성공")
-
     driver.quit()
 
 except:
